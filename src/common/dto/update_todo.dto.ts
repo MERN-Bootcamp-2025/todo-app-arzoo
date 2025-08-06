@@ -1,9 +1,11 @@
 import { IsDateString, IsEnum, IsOptional, IsString } from "class-validator";
 import { Priority, Status } from "../../interfaces/todo.interface";
 
-export class CreateTodoDTO{
+export class UpdateTodoDTO{
+
+    @IsOptional()
     @IsString()
-    title: string;
+    title?: string;
 
     @IsOptional()
     @IsString()
@@ -11,17 +13,13 @@ export class CreateTodoDTO{
 
     @IsOptional()
     @IsEnum({type: 'enum', enum: Status})
-    status?: Status;
+    status?: string;
 
     @IsOptional()
     @IsEnum({type:'enum', enum: Priority})
-    priority?:Priority;
+    priority?:string;
 
     @IsOptional()
     @IsDateString()
     expected_completion?:string;
-
-    // @IsOptional()
-    // @IsString()
-    // user_id?:string;
 }

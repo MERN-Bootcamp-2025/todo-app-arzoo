@@ -5,7 +5,7 @@ export const requireAdmin = (req:Request, res:Response, next:NextFunction) : Res
     if((req as RequestWithUser).user?.role !== "admin"){
 
         return res.status(403).json({
-            message: "Only admin can invite users"
+            message: "Access Denied: Admins only"
         })
     }
     next();

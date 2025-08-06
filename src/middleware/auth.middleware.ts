@@ -40,13 +40,6 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction): Respon
       role: decoded.role,
     };
     
-    //check => only admin can fetch all users
-    if(decoded.role === "user"){
-        return res.status(403).json({
-            message: "Access Denied"
-        })
-    }
-
     return next(); // Pass control to the next middleware or route
   } catch (error) {
     console.error("JWT verification failed:", error);
