@@ -2,6 +2,7 @@ import express, { Application } from "express";
 import authRoutes from './routes/auth.routes';
 import inviteRoutes from './routes/invite.routes';
 import userRoutes from './routes/user.routes';
+import todoRoutes from './routes/todo.routes';
 import { errorHandler } from "./middleware/errorHandler.middleware";
 
 import dotenv from 'dotenv';
@@ -25,7 +26,7 @@ export class App {
     this.app.use('/api',authRoutes);
     this.app.use('/api',inviteRoutes);
     this.app.use('/api/users',userRoutes);
-
+    this.app.use('/api/todo',todoRoutes);
   }
   private initializeErrorHanding(): void {
     this.app.use(errorHandler);

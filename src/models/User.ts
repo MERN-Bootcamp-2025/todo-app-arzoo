@@ -22,7 +22,7 @@ export class User implements IUser {
   @Column({type: "text"})
   invited_by?: string;
 
-  @OneToMany(()=>Todo,(todo)=>todo.user_id)
+  @OneToMany(()=>Todo,(todo)=>todo.user)
   todos?:Todo[];
 
   @CreateDateColumn({ name: 'created_at' })

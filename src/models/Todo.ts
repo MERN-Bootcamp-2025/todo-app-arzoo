@@ -22,13 +22,16 @@ export class Todo implements ITodo{
   @CreateDateColumn({ name: 'expected_completion' })
   expected_completion?: Date | undefined;
 
+  @Column({type:"text"})
+  user_id?: string | undefined;
+
   @ManyToOne(()=>User, (user)=>user.todos,{
     onDelete: "CASCADE"
   })
   @JoinColumn({name: "userId"})
-  user_id?: string | undefined;
+  user?:User;
 
-  @Column({type:"boolean"})
+  @Column({type:"boolean", default: false})
   is_deleted?: Boolean | undefined;
 
   @CreateDateColumn({ name: 'created_at' })
