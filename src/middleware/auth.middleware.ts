@@ -40,6 +40,7 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction): Respon
       role: decoded.role,
     };
     
+    //check => only admin can fetch all users
     if(decoded.role === "user"){
         return res.status(403).json({
             message: "Access Denied"
