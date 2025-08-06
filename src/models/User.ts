@@ -5,29 +5,29 @@ import { Todo } from "./Todo";
 @Entity("user")
 export class User implements IUser {
   @PrimaryColumn({ type: "uuid", unique: true, default: () => "gen_random_uuid()" })
-  id?: string | undefined;
+  id?: string;
 
   @Column({ type: "text" })
-  name?: string | undefined;
+  name?: string;
 
   @Column({ type: "text", unique: true })
-  email?: string | undefined;
+  email?: string;
 
   @Column({ type: "text" })
-  password?: string | undefined;
+  password?: string;
 
   @Column({type: "enum", enum:UserRole})
-  role?: UserRole | undefined;
+  role?: UserRole;
 
   @Column({type: "text"})
-  invited_by?: string | undefined;
+  invited_by?: string;
 
   @OneToMany(()=>Todo,(todo)=>todo.user_id)
   todos?:Todo[];
 
   @CreateDateColumn({ name: 'created_at' })
-  created_at?: Date | undefined;
+  created_at?: Date;
 
   @CreateDateColumn({ name: 'updated_at' })
-  updated_at?: Date | undefined;
+  updated_at?: Date;
 }

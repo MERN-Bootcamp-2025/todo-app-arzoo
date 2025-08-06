@@ -27,5 +27,8 @@
     "typedi": "^0.10.0",
     "typeorm": "^0.3.25",
     "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^6.4.17"
   }
 }

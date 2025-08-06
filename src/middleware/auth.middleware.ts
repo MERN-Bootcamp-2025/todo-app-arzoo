@@ -1,11 +1,15 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
+
 // You should store this in env variables in real apps
 const JWT_SECRET = process.env.ACCESS_TOKEN_SECRET || "thisissupersecretaccesstoken";
 
+if (!JWT_SECRET) {
+  throw new Error("ACCESS_TOKEN_SECRET is not defined in environment variables");
+}
 export interface RequestWithUser extends Request {
-  user: {
+  user?: {
     id: number;
     email: string;
     role: string;
@@ -36,9 +40,15 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction): Respon
       role: decoded.role,
     };
     
+    if(decoded.role === "user"){
+        return res.status(403).json({
+            message: "Access Denied"
+        })
+    }
 
     return next(); // Pass control to the next middleware or route
   } catch (error) {
+    console.error("JWT verification failed:", error);
     return res.status(401).json({ message: "Unauthorized: Invalid token" });
   }
 };
