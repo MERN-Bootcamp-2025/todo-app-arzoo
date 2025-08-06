@@ -1,4 +1,10 @@
 import express, { Application } from "express";
+import authRoutes from './routes/auth.routes';
+import { errorHandler } from "./middleware/errorHandler.middleware";
+
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 export class App {
   public app: Application;
@@ -14,10 +20,11 @@ export class App {
 
   }
   private initializeRoutes(): void {
+    this.app.use('/api',authRoutes);
 
   }
   private initializeErrorHanding(): void {
-
+    this.app.use(errorHandler);
   }
   public getApp(): Application {
     return this.app;
