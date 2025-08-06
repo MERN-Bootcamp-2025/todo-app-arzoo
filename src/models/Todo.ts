@@ -10,7 +10,7 @@ export class Todo implements ITodo{
   @Column({ type: "text" })
   title?: string | undefined;
 
-  @Column({ type: "text", unique: true })
+  @Column({ type: "text"})
   desc?: string | undefined;
 
   @Column({ type: "enum", enum:Status })
