@@ -4,6 +4,7 @@ import inviteRoutes from './routes/invite.routes';
 import userRoutes from './routes/user.routes';
 import todoRoutes from './routes/todo.routes';
 import { errorHandler } from "./middleware/errorHandler.middleware";
+import cors from 'cors';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -20,7 +21,7 @@ export class App {
   }
   private initializeMiddlewares(): void {
     this.app.use(express.json()); //to parse json req
-
+    this.app.use(cors());
   }
   private initializeRoutes(): void {
     this.app.use('/api',authRoutes);
