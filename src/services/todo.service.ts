@@ -1,9 +1,10 @@
 import { Service } from "typedi";
-import { Between,  LessThanOrEqual, MoreThanOrEqual, Repository } from "typeorm";
+import { Between,  LessThanOrEqual, MoreThanOrEqual, Repository, ILike } from "typeorm";
 import { Todo } from "../models/Todo";
 import { AppDataSource } from "../config/database";
 import { CreateTodoDTO } from "../common/dto/todo.dto";
 import { UpdateTodoDTO } from "../common/dto/update_todo.dto";
+
 
 @Service()
 export class TodoService {
@@ -48,9 +49,13 @@ export class TodoService {
             is_deleted: false
         }
 
+
         if(status) where.status = status;
         if(priority) where.priority = priority;
-        if(title) where.title = title;
+        // if(title) where.title = title;
+        if(title){
+           where.title = ILike(`%${title}%`)
+        }
 
         if(from_date && to_date){
             where.expected_completion = Between(
