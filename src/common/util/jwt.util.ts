@@ -8,7 +8,7 @@ const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET || 'thisissupersec
 
 
 export function generateAccessToken(payload: object): string{
-    return jwt.sign(payload, ACCESS_TOKEN_SECRET, {expiresIn: '20m'});
+    return jwt.sign(payload, ACCESS_TOKEN_SECRET, {expiresIn: '2h'});
 }
 
 export function generateRefershToken(payload: object): string{

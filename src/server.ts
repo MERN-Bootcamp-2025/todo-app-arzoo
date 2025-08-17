@@ -3,9 +3,9 @@ import { initializeDatabase } from './config/database';
 import { App } from './app';
 
 dotenv.config();
-
+//this is the starting point of our application
 async function server(): Promise<void>{
-    try{
+    try{//initialize the database connection
         console.log('Initializing the database connection...');
         await initializeDatabase();
 

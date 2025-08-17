@@ -9,7 +9,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 dotenv.config();
 
-
+//this class has all the initialized moddlewares, routes and error handler
 export class App {
   public app: Application;
 
